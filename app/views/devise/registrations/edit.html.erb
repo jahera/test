@@ -1,0 +1,50 @@
+
+<!--  page-wrapper -->
+<div id="page-wrapper">
+
+  <div style="height: 50px;">&nbsp;
+
+  </div>
+  <!-- row -->
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body" style="padding:2% 0 2% 20%;">
+        <h3>Change your password</h3>
+        <div class="table-responsive">
+
+          <% if user_signed_in? %>       
+           
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
+
+              <div><%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true,:style=>" width:50%;" %></div>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+
+                <div style="padding-top: 2%;"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                <%= f.password_field :password, autocomplete: "off",:style=>" width:50%;" %></div>
+
+              <div style="padding-top: 2%;"><%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off",:style=>" width:50%;" %></div>
+
+              <div style="padding-top: 2%;"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                <%= f.password_field :current_password, autocomplete: "off",:style=>" width:50%;" %></div>
+
+              <div style="padding:2% 0;"><%= f.submit "Update" %></div>
+            <% end %>
+            <%= link_to "Back", :back %>
+          <%end%>
+        </div>          
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+</div>
+<!-- end page-wrapper -->
+<div><%= will_paginate @msginbox ,:class=>"pagination" if @msginbox%></div>
+
+

@@ -1,0 +1,111 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#example').dataTable();
+  });
+</script>
+<div id="browsealloverreport_id">
+  <!--  page-wrapper -->
+  <div id="page-wrapper">
+
+    <div class="row">
+      <!--page header-->
+      <div class="col-lg-12">
+        <h1 class="page-header"></h1>
+      </div>
+      <!--end page header-->
+    </div>
+    <!-- row -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <% upload_location_date = UploadLocationFile.get_location_date(@devices.id) %>            
+          <%= select_tag 'id', options_for_select(upload_location_date),:prompt => "Please Select Date",:id=>'geolocation_id', :class=>"form-control custom" if upload_location_date%></br>
+
+          <div class="center-column">
+            <div class="table">    
+              <% if @upload_locations.present? %>
+                <div id="container">
+                  <div id="demo" >
+                    <table cellpadding="0" cellspacing="0" border="0" class="listing" id="example">
+                      <caption>&nbsp;</caption>
+                      <thead>
+                        <tr>                  
+                          <th style="width:15%">Date and Time</th>
+                          <th style="width:12%">City</th>
+                          <th style="width:5%">Country</th>
+                          <th style="width:6%">Pin Code</th>
+                          <th style="width:12%">Address</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @upload_locations.each do |location| %>
+                          <% @query = location["latitude"].to_s + "," + location["longitude"].to_s  %>                  
+                          <% @result = Geocoder.search(@query).first  %>
+                          <% msec= location["current_loc_time"].to_i if location["current_loc_time"]%>
+                          <tr class="gradeA">
+                            <th><%= Time.at(msec/1000).in_time_zone('Kolkata') if msec %></th>
+                            <th><%= @result ? @result.city : '' %></th>
+                            <th><%= @result ? @result.country_code : '' %></th>
+                            <th><%= @result ? @result.postal_code : '' %></th>
+                            <th><%= @result ? @result.formatted_address : '' %></th>   
+                          </tr>
+                        <% end if @upload_locations%>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="spacer"></div>
+
+                </div>
+              <% else %>
+                <p>
+                  There is no subscriber
+                </p>
+              <% end %>
+              <br/>
+              <div><%#= will_paginate @users_pag,:container => false %></div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <!-- end row -->
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <!-- end page-wrapper -->
+
+
+  <script type="text/javascript">
+    $(function() {
+<%#*$("#geolocation_id").on('click', function()%>
+      $("#geolocation_id").change(function() {
+        var date = $('#geolocation_id').val();
+        console.log(date)
+        $.ajax({
+          type: 'get',
+          url: '/locations',
+          data: {
+            //'file_name': file_name,
+            'date': date
+                    // 'host_name': host_name
+          },
+          success: function(response) {
+            $("#geolocation_id option:selected").text(date);
+            // $("#divmask").unmask();
+            // $("#loadmasking_id").unmask();
+            //$("#department_date_id").show();
+            // $("#submitbtn_id").show();
+            console.log(response)
+          },
+          error: function() {
+            //$("#loadmasking_id").unmask();
+            alert("An error occurred while processing XML file.");
+          }
+        });
+      })
+    });
+  </script>
+</div>F

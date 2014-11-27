@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+
+development:
+  <<: *default
+  database: "mobile_snoop_dev"
+
+test:
+  <<: *default
+  database: "mobile_snoop_test"
+  
+
+production:
+  <<: *default
+  database: "mobile_snoop_prod"

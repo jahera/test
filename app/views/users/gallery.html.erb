@@ -1,0 +1,59 @@
+<div id="page-wrapper">
+
+  <div class="row">
+    <!--page header-->
+    <div class="col-lg-12">
+      <h1 class="page-header"></h1>
+    </div>
+    <!--end page header-->
+  </div>
+  <!-- row -->
+<%# accepted_photoformats = [".gif", ".png" ,".jpg",".jpeg",".sfm"] %>
+<%# accepted_videoformats = [".m4a", ".ogg",".mp4","mp3",".ogv",".wav",".lvl"] %>
+<%# accepted_otherformats = [".txt", ".pdf",".dat","csv",".xml",".doc"] %>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>Images</h3>
+          <div class="table-responsive">
+            <div class="panel panel-primary">
+              <div class="panel-heading"><h4></h4></div> 			
+
+
+              <% @cardfiles.each do |file| %> 
+                <% if ( @type == 'Photo')%>
+                  <div  style="float:left; margin:15px 10px; width:150px;border:">
+                    <div style=" padding: 5px; background: #fff; border-radius:5px;border:1px solid #ccc;">   
+                      <%= image_tag file.file,:style => "width:137px;border-radius:5px;height:137px;outline:none;border:none;" if file.file%></div>
+                    <div style="margin-top: 5px;"><a style="padding: 5px 35px;" class="btn btn-primary" href="<%= download_gallery_path(file.id) %>"><i class="fa fa-download"></i>Download</a></div>
+                  </div>                      
+                <%end%>
+              <%end if @cardfiles %>
+
+
+
+            </div>
+          </div>
+          <script type="text/javascript">
+            $('audio,video').mediaelementplayer({
+              // auto-select this language (instead of starting with "None")
+              startLanguage: 'en',
+              // automatically translate into these languages
+              translations: ['es', 'ar', 'zh', 'ru'],
+              // enable the dropdown list of languages
+              translationSelector: true,
+              //everything works as it should set
+              pluginVars: 'isvideo=true',
+            });
+          </script>
+
+        </div>
+        <%= will_paginate @cardfiles ,:class=>"pagination"%>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+</div>
+<div><%#= will_paginate @cards ,:class=>"pagination"%></div>

@@ -1,0 +1,186 @@
+<!--  page-wrapper -->
+<div id="page-wrapper">
+
+  <div class="row">
+    <!--page header-->
+    <div class="col-lg-12" style=" margin-left: 2%">
+      <h2 class="page-header"></h2>
+    </div>
+    <!--end page header-->
+  </div>
+  <!-- row -->
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Call logs</h3>
+        <%if @calllogs.present? %>
+          <div class="table-responsive">
+            <script type="text/javascript">
+              $(function() {
+                var incoming = <%= @incoming.inspect.html_safe if@incoming %>
+                var outgoing = <%= @outgoing.inspect.html_safe if @outgoing %>
+                var missed = <%= @missed.inspect.html_safe if @missed %>
+
+                $('#container').highcharts({
+                  chart: {
+                    type: 'column',
+                    margin: 75,
+                    options3d: {
+                      enabled: true,
+                      alpha: 10,
+                      beta: 25,
+                      depth: 70
+                    }
+                  },
+                  tooltip: {
+                    type: 'datetime', //y-axis will be in milliseconds                  
+                    formatter: function() {
+                      var d = new Date(this.y);
+                      var h = Math.floor(d / 3600);
+                      var m = Math.floor(d % 3600 / 60);
+                      var s = Math.floor(d % 3600 % 60);
+                      return this.series.name + ':  ' + this.key + '<br/>' + 'Time:  ' + ((h > 0 ? h + ":" : "00:") + (m > 0 ? (m < 10 ? "0" : "") + m + ":" : "00:") + (s < 10 ? "0" : "") + s);
+                    }
+                  },
+                  plotOptions: {
+                    column: {
+                      depth: 25
+                    },
+                    series: {
+                      cursor: 'pointer',
+                      dataLabels: {
+                        enabled: false,
+                        align: 'left',
+                        // format: '{point.name}: {point.y:.1f}%'
+                      },
+                      point: {
+                        events: {
+                          click: function() {                            
+                            var call_type = this.series.name
+                            var mob_no = this.name
+                            $.ajax({
+                              type: 'get',
+                              url: 'Callog-Details',
+                              data: {
+                                'call_type': call_type,
+                                'mob_no': mob_no,
+                              },
+                              success: function(data) {
+                                $('#myModal').modal('show');
+                                $("#task_date_id").show();
+                              },
+                              error: function(data) {
+                                alert('Error');
+                              }
+                            });
+                            //load: requestData
+                            //alert('Category: ' + this.category + ', value: ' + this.y + 'Series: ' + this.series.name + ' ID: ' + this.config[2])
+                          }
+                        }
+                      }
+                    },
+                  },
+                  title: {
+                    text: 'X-Axis = Mobile Number & Y-Axis = Call Duration In Secs.',
+                    style: {
+                      color: '#428bca'
+                    }
+                  },
+                  xAxis: {
+                    //categories: othetasks.concat(prodtasks),
+                    labels: {
+                      rotation: -45,
+                      enabled: false,
+                      align: 'right',
+                      style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                      }
+                    },
+                  },
+                  yAxis: {
+                    //opposite: true
+
+                  },
+                  series: [{
+                      type: 'column',
+                      name: 'INCOMING',
+                      data: incoming
+                    },
+                    {
+                      type: 'column',
+                      name: 'OUTGOING',
+                      data: outgoing
+                    },
+                    {
+                      type: 'column',
+                      name: 'MISSED',
+                      data: missed
+                    }]
+                });
+              });
+
+
+
+              /* function secondsToHms(d) {
+               d = Number(d);
+               var h = Math.floor(d / 3600);
+               var m = Math.floor(d % 3600 / 60);
+               var s = Math.floor(d % 3600 % 60);
+               return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
+               }*/
+
+            </script>
+
+            <div id="container" style="height: 400px"></div>
+            <% if user_signed_in? %>       
+    <%#= link_to 'Download', download_app_path %>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Mobile Number</th>
+                    <th>Call Type</th>
+                    <th>Date Time</th>
+                    <th>Call Duration</th>
+    <%# if @type == 'cantacts' %>
+                    <th>Count</th>
+    <%#end%>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @calllogs.each_with_index do |clog , i| %>
+                    <% msec= clog.date_time.to_i if clog.date_time%>                                  
+                    <tr>
+                      <th><%=i%></th>
+                      <th><%= clog.mobile_number %></th>                  
+                      <th><%= clog.call_type %></th>         
+                      <th><%= Time.at(msec/1000).in_time_zone('Kolkata') if msec %></th>
+                      <th><%= Time.at(clog["sum(call_duration)"]).utc.strftime("%H:%M:%S") %></th>
+                      <th><%= clog["count(mobile_number)"] %></th>
+                    </tr>
+                  <%end if @calllogs%>
+                </tbody>
+              </table>
+            <%end%>
+          </div> 
+          <%= will_paginate @calllogs ,:class=>"pagination" if @call_logs%>
+        <%else%>
+          Please download and install : <%= link_to "Download", download_app_path%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+       aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="task_date_id"></div>  
+  </div>
+  <!-- end row -->
+</div>
+
+<!-- end page-wrapper -->
+
+
+
+

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to eliteguard.in, <%= @user.email if @user%></h1> <br/>
+    <h2> Your Login Id : <% @user.mobile if @user%></h2>
+    <h2> Your Password : <% @user.unhashed_password if @user%></h2>    
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

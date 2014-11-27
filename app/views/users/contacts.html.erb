@@ -1,0 +1,53 @@
+<!--  page-wrapper -->
+<div id="page-wrapper">
+
+  <div style="height: 50px">&nbsp;   
+  </div>
+  <!-- row -->
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Contact details</h3>
+        <div class="table-responsive">
+
+          <% if user_signed_in? %>       
+  <%#= link_to 'Download', download_app_path %>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Mobile Number</th>                  
+
+  <%#end%>
+                </tr>
+              </thead>
+              <tbody>
+                <% @contacts.each_with_index do |contact , i| %>
+    <%# if time.present? %>
+    <%# t = clog.call_duration.to_i / 1000 %>
+    <%# mm, ss = t.divmod(60) %>
+    <%# hh, mm = mm.divmod(60) %>
+    <%# @ot = "#{hh}:#{mm}:#{ss}" %>
+    <%#end%>
+                  <tr>
+                    <th><%=i%></th>
+                    <th><%= contact.name %></th>                  
+                    <th><%= contact.mobile_number %></th>                             
+
+                  </tr>
+                <%end if @contacts%>
+              </tbody>
+            </table>
+          <%end%>
+        </div> 
+        <%= will_paginate @contacts ,:class=>"pagination" if @contacts%>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+</div>
+<!-- end page-wrapper -->
+
+
+

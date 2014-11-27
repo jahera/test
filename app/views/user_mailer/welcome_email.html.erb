@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to mobilesnoop.com, <%= @user.email if @user%></h1>
+    <p>
+      You have successfully signed up to example.com,
+      your username is: <%= @user.login if @user%>.<br>
+    </p>
+    <p>      
+      Please follow this link: <%= link_to "Terms and Conditions" , @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

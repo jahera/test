@@ -1,0 +1,323 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Elite Guard</title> 
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <!-- Owl Carousel Assets -->
+  <script type="text/javascript">
+    $(function() {
+      $('#da-slider').cslider({
+        autoplay: true,
+        bgincrement: 450
+      });
+
+    });
+    $(document).ready(function() {
+
+      $("#owl-demo").owlCarousel({
+        items: 4,
+        lazyLoad: true,
+        autoPlay: true,
+        navigation: true,
+        navigationText: ["", ""],
+        rewindNav: false,
+        scrollPerPage: false,
+        pagination: false,
+        paginationNumbers: false,
+      });
+
+    });
+
+    $(function() {
+      $.ajax({
+        url: '/assets/echo-hereweare.mp4',
+        success: function() {
+        },
+        error: function(e) {
+          $(document.body).prepend($('<div style="margin: 20px; padding: 10px; color: #fff; background: #ff4444; font-family: Helvetica, sanserif;">This demo will not function properly without media files (MP4, WebM, and MP3).<br><br>Please download sample media files from <a style="color:#fff;font-weight:bold" href="https://github.com/johndyer/mediaelement-files/">https://github.com/johndyer/mediaelement-files/</a>.</div>'));
+        }
+      });
+
+    });
+    $('audio,video').mediaelementplayer({
+      mode: 'shim',
+      success: function(player, node) {
+        $('#' + node.id + '-mode').html('mode: ' + player.pluginType);
+      }
+    });
+    $('#stopall').click(function() {
+      $('video, audio').each(function() {
+        $(this)[0].player.pause();
+      });
+    });
+  </script>
+  <style type="text/css">
+    .slider_bg{
+      background: url(<%=asset_path("bg_header.jpg") %>) no-repeat;
+      background-size: 100%;
+    }
+  </style>
+  <!-- //Owl Carousel Assets -->
+  <!----font-Awesome----->
+  <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+  <!----font-Awesome----->
+</head>
+<body style="background: transparent;">
+  <div data-no-turbolink> 
+    <div class="header_bg">
+      <div class="container">
+        <div class="row header">
+          <div class="logo navbar-left">
+            <h1><a href="/"><img src="<%= asset_path("logo.png") %>" width="250" height="67" alt=""></a></h1>
+            <p class="header-cap">Product Designed by: Silicon Valley (USA) Engineers</p>
+          </div>
+          <div class="h_search navbar-right">
+            <!--<form>
+                    <input type="text" class="text" value="Enter text here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter text here';}">
+                    <input type="submit" value="search">
+            </form>-->
+            <p>Feel free to contact us at :<br><i class="fa fa-phone"></i> +91-33-4001-2024 / 4006-8562</p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row h_menu" style="margin:0 !important;">
+      <div class="container">
+        <nav class="navbar navbar-default navbar-left" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span>Main Menu</span>
+              <!--<span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>-->
+            </button>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/About-Us">About</a></li>
+              <li class="dropdown">
+                <a data-toggle="dropdown" id="dLabel" role="button" data-target="#" href="#">Product <span class="caret"></span></a>
+                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li role="presentation"><a href="/Mobile-Edition">Elite Guard - Mobile</a></li>
+                  <li role="presentation"><a href="/Pc_Edition">Elite Guard - Pc</a></li>
+                </ul>
+              </li>            
+              <li><a href="/users/sign_in" target="_blank">Subscriber Login</a></li>
+              <!--<li><a href="#">Blog</a></li> -->
+              <li><a href="/Contact-Us">Contact</a></li>
+            </ul>
+            <!--<ul class="nav navbar-nav">
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+            <!--<li class="dropdown">
+            <a data-toggle="dropdown" id="dLabel" role="button" data-target="#" href="#">Product <span class="caret"></span></a>
+            <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li role="presentation"><a href="product.html">Elite Guard - Mobile</a></li>
+                <li role="presentation"><a href="#">Elite Guard - Pc</a></li>
+            </ul>
+    </li>
+    <li><a href="mobile-edition.html">Mobile Edition</a></li>
+    <li><a href="pc-edition.html">PC Edition</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>-->
+          </div><!-- /.navbar-collapse -->
+          <!-- start soc_icons -->
+        </nav>
+        <div class="soc_icons navbar-right">
+          <ul class="list-unstyled text-center">
+            <li><a href="https://twitter.com/eliteguardhome"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/eliteguardhome"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://plus.google.com/107556165661679557194"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UC29JF1kPDOd24LbkSOvITkA"><i class="fa fa-youtube"></i></a></li>
+            <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
+          </ul>	
+        </div>
+      </div>
+    </div>
+    <div class="slider_bg"><!-- start slider -->
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="<%= asset_path("bg_banner.jpg") %>" alt="">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="<%= asset_path("bg_banner1.jpg") %>" alt="...">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="<%= asset_path("bg_banner2.JPG") %>" alt="">
+            <div class="carousel-caption">                
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div><!-- end slider -->
+    <div class="main_bg"><!-- start main -->
+      <div class="container">
+        <div class="main1 row">
+          <h1 class="h1-heading">The ideal software to track and monitor what your kids are doing on the computer or mobile devices when online and even offline in a simple and consistent way</h1>
+          <p class="ptxt" style="font-size:18px;">Concerns grow over internet's harmful effects on children. Is the internet hurting children?<br> The answer is somewhat complex!</p>
+        </div>
+      </div>
+      <div class="slideshow-pager-group"></div>
+      <div class="container">
+        <div class="main row" style="margin-bottom:10px;">
+          <div class="col-lg-6">
+            <h2><i class="fa fa-cog"></i> A better way to <span><strong>protect your kids</strong></span></h2>
+            <p class="para_top">Elite Guard helps parents to protect kids online. Use Elite Guard to see how your child uses the Internet, to set responsible time limits, to block dangerous or inappropriate content, and to monitor for signs of cyberbullying and online predators. </p>
+            <p class="para_top">Elite Guard is easy to use, features superior technology, and is available in free and premium versions.</p>
+            <!--<button class="btn btn-primary"><i class="fa fa-list-ul"></i> Why Elite Guard?</button>-->
+          </div>
+
+          <div class="col-lg-6" align="center">     
+            <iframe class="youtube-player" type="text/html" width="400" height="230" src="http://www.youtube.com/embed/3weLZEsgXRE?version=3&enablejsapi=1&rel=0&fs=1" allowscriptaccess="always" allowfullscreen="true" frameborder="0"></iframe>            
+          </div>
+          
+          <div class="clearfix">&nbsp;</div>
+        </div>
+        <div class="main row">
+          <div class="col-md-6 content_left">
+            <img src="<%=asset_path("mobile.png")%>" alt="" class="img-responsive">
+          </div>
+          <div class="col-md-6 content_right">
+            <h4><i class="fa fa-retweet"></i> Stop worrying,<span> <strong>start managing</strong>  </span></h4>
+            <p class="para_top">Elite Guard helps you to protect kids by showing the entire activities of their PC, laptops and even smartphones. Elite Guard enables you to identify and resolve issues associated with your kid’s internet activities and thus eliminate the risk of cyber hazards.</p>
+            <p class="para_top">Taking monitoring to a whole new level of coverage, our software records BlackBerry, Yahoo, Gtalk, Windows Live, and AOL messenger apps, widening the net to ensure that you have the best chance of capturing any communications your child has on his mobile phone. </p>
+            <a href="/Mobile-Edition" class="btn btn-primary">read more</a>
+          </div>
+        </div>
+        <div class="main row">
+          <div class="centersectiontitle">
+            <h4>How it <span style="color:#006688;">Works?</span></h4>
+          </div>
+          <div align="center"><img src="<%=asset_path("check.png") %>" alt=""></div>
+        </div>
+        <div class="main row">
+          <div class="centersectiontitle">
+            <h4><i class="fa fa-book"></i> Key <span style="color:#006688;">Features</span></h4>
+          </div>
+        </div>
+        <div class="main row bg-main">
+          <div class="col-md-2 images_1_of_4 text-center">
+            <span class="bg"><i class="fa fa-comments"></i></span>
+            <h3><strong>Text Message Monitoring</strong></h3>
+          </div>
+          <div class="col-md-2 images_1_of_4 bg1 text-center">
+            <span class="bg"><i class="fa fa-phone-square"></i></span>
+            <h3><strong>Call Monitoring</strong></h3>
+          </div>
+          <div class="col-md-2 images_1_of_4 bg1 text-center">
+            <span class="bg"><i class="fa fa-book"></i></span>
+            <h3><strong>Phone Book</strong></h3>
+          </div>		
+          <div class="col-md-2 images_1_of_4 bg1 text-center">
+            <span class="bg"><i class="fa fa-map-marker"></i> </span>
+            <h3><strong>GPS Tracking</strong></h3>
+          </div>
+          <div class="col-md-2 images_1_of_4 bg1 text-center">
+            <span class="bg"><i class="fa fa-film"></i> </span>
+            <h3><strong>Image, Video & Audio Files</strong></h3>
+          </div>   
+          <div class="col-md-2 images_1_of_4 bg1 text-center">
+            <span class="bg"><i class="fa fa-mobile"></i> </span>
+            <h3><strong>Browser History</strong></h3>
+          </div>	
+        </div>
+        <div class="main1 row">
+          <div class="centersectiontitle">
+            <h4><i class="fa fa-indent"></i> <span style="color:#006688;">Elite Guard</span> puts you in control over your children activities </h4>
+          </div>
+          <p class="para_top">Elite Guard can keep a close watch and record activities which enable the parents to take precautions against the contents and materials which are unsafe for young audiences while still allowing them to take advantage of the wonderful resources online and offline.</p>
+          <p class="para_top">The child can be kept unaware about this application. On the basis of the captured data the parents can analyse the activity of the child. </p>
+          <p class="para_top">This will enable the parents to initiate corrective measures in a specific manner to protect the probable psychological tumult and physical harms in the life of the child towards their healthy growth and bright future.</p>
+        </div>
+      </div>
+    </div><!-- end main -->
+    <div class="main_btm"><!-- start main_btm -->
+      <div class="container">
+
+
+      </div>
+    </div>
+    <div class="footer_bg"><!-- start footer -->
+      <div class="container">
+        <div class="row footer">
+          <div class="col-lg-8">
+            <div class="col-lg-3">
+              <h4>About</h4>
+              <ul>
+                <li><a href="/About-Us">Company</a></li>
+                <li><a href="/Contact-Us">Contact us</a></li>
+                <!-- <li><a href="terms-condition.html">Terms and Condition</a></li>-->
+                <li><a href="/Privacy-Policy">Privacy Policy</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-4">
+              <h4>Product</h4>
+              <ul>
+                <li><a href="/Mobile-Edition">Elite Guard for Phone</a></li>
+                <li><a href="/Pc_Edition">Elite Guard for PC</a></li>
+              </ul>
+            </div>
+            <!--<div class="col-lg-4">
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Resources for parents</a></li>
+                <li><a href="#">Sitemap</a></li>
+              </ul>
+            </div>-->
+          </div>
+          <div class="col-lg-4 last-section">
+            <h4>Find Us:</h4>
+            <p><strong>Circar Consulting Services Pvt. Ltd</strong></p>
+            <p>EN-62, Salt Lake, Sector V</p>
+            <p>Kolkata - 700091</p>
+            <p>West Bengal, INDIA</p>
+            <p><i class="fa fa-phone"></i> +91-33-4006-8562</p>
+            <p><i class="fa fa-phone"></i> +91-33-4001-2026</p>
+          </div>
+          <div class="clearfix"></div>
+          <hr>
+          <div class="copy text-center">
+            <p class="link"><span>&#169; All rights reserved</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

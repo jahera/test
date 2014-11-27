@@ -1,0 +1,152 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Elite Guard | About </title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".dropdown").on('click', function() {
+            $(".dropdown").addClass("active");
+            $(".active_button1").removeClass("active");
+            $(".active_button2").removeClass("active");
+            $(".active_button3").removeClass("active");
+        });
+        $(".active_button2").on('click', function() {
+            $(".active_button2").addClass("active");
+            $(".active_button1").removeClass("active");
+            $(".dropdown").removeClass("active");
+            $(".active_button3").removeClass("active");
+        });
+
+    });
+</script>
+<body style="background: transparent;">
+<div data-no-turbolink>
+  <div class="header_bg1">
+    <div class="container">
+      <div class="row header">
+        <div class="logo navbar-left">
+          <h1><a href="/"><img src="<%= asset_path("logo.png") %>" width="250" height="67" alt=""> </a></h1>
+          <p class="header-cap" style="color: #fff;">Product Designed by: Silicon Valley (USA) Engineers</p>
+        </div>
+        <div class="h_search navbar-right">
+          <!-- <form>
+               <input type="text" class="text" value="Enter text here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter text here';}">
+               <input type="submit" value="search">
+           </form>-->
+          <p style="color: #fff;">Feel free to contact us at :<br><i class="fa fa-phone"></i> +91-33-4001-2024 / 4006-8562</p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="row h_menu" style="margin:0 !important;">
+      <div class="container">
+        <nav class="navbar navbar-default navbar-left" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span>Main Menu</span>
+              <!--<span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>-->
+            </button>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li class="active_button1 active"><a href="/About-Us">About</a></li>
+              <li class="dropdown">
+                <a data-toggle="dropdown" id="dLabel" role="button" data-target="#" href="#">Product <span class="caret"></span></a>
+                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li role="presentation"><a href="/Mobile-Edition">Elite Guard - Mobile</a></li>
+                  <li role="presentation"><a href="/Pc_Edition">Elite Guard - Pc</a></li>
+                </ul>
+              </li>
+              <li class="active_button2"><a href="/users/sign_in" target="_blank">Subscriber Login</a></li>
+              <!--<li><a href="/Blog">Blog</a></li>-->
+              <li class="active_button3"><a href="/Contact-Us">Contact</a></li>
+            </ul>
+          </div><!-
+      </div><!-- /.navbar-collapse -->
+      <!-- start soc_icons -->
+      </nav>
+      <div class="soc_icons navbar-right">
+        <ul class="list-unstyled text-center">
+          <li><a href="https://twitter.com/eliteguardhome"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://www.facebook.com/eliteguardhome"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="https://plus.google.com/107556165661679557194"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="https://www.youtube.com/channel/UC29JF1kPDOd24LbkSOvITkA"><i class="fa fa-youtube"></i></a></li>
+          <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
+        </ul>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<div class="main_bg"><!-- start main -->
+  <div class="container">
+    <%= yield %>
+  </div>
+</div><!-- end main -->
+
+<div class="footer_bg"><!-- start footer -->
+  <div class="container">
+    <div class="row footer">
+      <div class="col-lg-12">
+        <div class="col-sm-4">
+          <h4>About</h4>
+          <ul>
+            <li><a href="/About-Us">Company</a></li>
+            <li><a href="/Contact-Us">Contact us</a></li>
+            <!-- <li><a href="terms-condition.html">Terms and Condition</a></li>-->
+            <li><a href="/Privacy-Policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-4">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/Mobile-Edition">Elite Guard for Phone</a></li>
+            <li><a href="/Pc_Edition">Elite Guard for PC</a></li>
+          </ul>
+        </div>
+        <!--<div class="col-lg-4">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Resources for parents</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>-->
+        <div class="col-sm-4 last-section">
+          <h4>Find Us:</h4>
+          <p><strong>Circar Consulting Services Pvt. Ltd</strong></p>
+          <p>EN-62, Salt Lake, Sector V</p>
+          <p>Kolkata - 700091</p>
+          <p>West Bengal, INDIA</p>
+          <p><i class="fa fa-phone"></i> +91-33-4006-8562</p>
+          <p><i class="fa fa-phone"></i> +91-33-4001-2026</p>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <hr>
+      <div class="copy text-center">
+        <p class="link"><span>&#169; All rights reserved</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

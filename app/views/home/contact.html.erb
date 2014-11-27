@@ -1,0 +1,96 @@
+
+<!--=====================Map========================-->
+<style>
+  #map_canvas {
+    width: 100%;
+    height: 500px;
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+  function initialize() {
+    var map_canvas = document.getElementById('map_canvas');
+    var map_options = {
+      center: new google.maps.LatLng(22.573080, 88.430632),
+      zoom: 8,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(map_canvas, map_options)
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  $(".active_button1").removeClass("active");
+  $(".active_button3").addClass("active");
+</script>
+
+<!--================================================-->
+</head>
+<body>
+
+
+  <div class="main_bg"><!-- start main -->
+    <div class="container">
+      <div class="main row">
+        <!--<iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265&amp;output=embed"></iframe><br><small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265" style="font-family: 'Open Sans', sans-serif;color:#555555;text-shadow:0 1px 0 #ffffff; text-align:left;font-size:12px;padding: 5px;">View Larger Map</a></small>-->
+        <div id="map_canvas"></div>
+      </div>
+    </div>
+  </div><!-- end main -->
+  <div class="main_btm"><!-- start main_btm -->
+    <div class="container">
+      <div class="main row">
+        <div class="col-md-4 company_ad">
+          <h2>find Address :</h2>
+          <address>
+            <p>Circar Consulting Services Pvt. Ltd</p>
+            <p>EN-62, Salt Lake, Sector V</p>
+            <p>Kolkata - 700091</p>
+            <p>West Bengal, INDIA</p>
+            <p><i class="fa fa-phone"></i> +91-33-4001-2024</p>
+            <p><i class="fa fa-phone"></i> +91-33-4006-8562</p>
+            <p>Follow on: <a href="https://www.facebook.com/eliteguardhome">Facebook</a>, <a href="https://twitter.com/eliteguardhome">Twitter</a></p>
+          </address>
+        </div>
+        <div class="col-md-8">
+          <div class="contact-form">
+            <h2>Contact Us</h2>
+            <div data-no-turbolink>
+
+              <%if flash[:error] || flash[:notice]%>
+                <center>
+                  <div id="notice" class="alert alert-success" style="width:auto;">
+                    <% color = flash[:error].present? ? "red" : "green" %>
+                    <h3>
+                      <font color="<%= color %>"><strong><%= flash[:error] || flash[:notice] %></strong></font>
+                    </h3>
+                  </div>
+                </center>
+              <% end %>
+              <!-- <form method="post" action="contact-post.html">-->
+              <%= form_for :contact ,:url => home_index_path,:method=> :post do |f| %>
+                <div>
+                  <span><%= f.label:Name %></span>
+                  <!--<span><input type="username" class="form-control" id="userName"></span>-->
+                  <span><%= f.text_field:name,:class=>"form-control"%></span>
+                </div>
+                <div>
+                  <span><%= f.label:Email %></span>
+                  <!--<span><input type="email" class="form-control" id="inputEmail3"></span>-->
+                 <span><%= f.text_field:email,:class=>"form-control " %></span>
+                </div>
+                <div>
+                  <span><%= f.label:Subject %></span>
+                  <!--<span><textarea name="userMsg"> </textarea></span>-->
+                  <span><%= f.text_area:subject %></span>
+                </div>
+                <div>
+                  <button class="btn btn-info">Submit</button>
+                </div>
+                <!--</form>-->
+              <% end %>
+            </div>
+          </div>
+        </div>		
+        <div class="clearfix"></div>		
+      </div> 
+    </div>
+  </div>

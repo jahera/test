@@ -1,0 +1,106 @@
+<div id="browsealloverreport_id">
+  <!--  page-wrapper -->
+  <div id="page-wrapper">
+
+    <div class="row">
+      <!--page header-->
+      <div class="col-lg-12">
+        <h1 class="page-header"></h1>
+      </div>
+      <!--end page header-->
+    </div>
+    <!-- row -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-body" id="browsealloverreport_id">
+            <h3>Locations</h3>          
+<%# location_date = DeviceLocation.all.map { |l| [l.created_at.strftime('%Y-%m-%d'),l.created_at] } %>          
+            <% location_date = DeviceLocation.get_date(@devices.id).uniq %>
+
+
+            <% upload_location_date = UploadLocationFile.get_location_date(@devices.id) %>            
+            <%= select_tag 'id', options_for_select(upload_location_date),:prompt => "Please Select Date",:id=>'geolocation_id', :class=>"form-control custom" if upload_location_date%></br>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>
+                      Date and Time
+                    </th>
+                    <th>
+                      City
+                    </th>
+                    <th>
+                      Country
+                    </th>
+                    <th>
+                      Pin Code
+                    </th>
+                    <th>
+                      Address
+                    </th>                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <%# @upload_locations.each do |location| %>
+                    <%# @loc = UploadLocationFile.formate_location("#{location["latitude"]}","#{location["longitude"]}")[0].data["address_components"].collect{|l| l["long_name"]}%>
+                    <%# msec= location["current_loc_time"].to_i if location["current_loc_time"]%>
+                    <tr>
+                      <th><%#=i%></th>
+                      <th><%#= Time.at(msec/1000).in_time_zone('Kolkata') if msec %></th>
+                      <th><%#= @loc[4] %></th>
+                      <th><%#= @loc[7]%></th>
+                      <th><%#= @loc[8] %></th>
+                      <th><%#= @loc %></th>                                          
+                    </tr>
+                  <%#end if @upload_locations%>
+                </tbody>
+              </table>
+            </div>
+<%#= will_paginate @locations ,:class=>"pagination" if @locations%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+
+  </div>
+
+
+  <!-- end page-wrapper -->
+
+
+  <script type="text/javascript">
+    $(function() {
+      $("#geolocation_id").change(function() {
+        var id = $('#geolocation_id').val();
+        console.log(id)
+        $.ajax({
+          type: 'get',
+          url: '/locations',
+          data: {
+            //'file_name': file_name,
+            'id': id
+            // 'host_name': host_name
+          },
+          success: function(response) {
+            // $("#divmask").unmask();
+            // $("#loadmasking_id").unmask();
+            //$("#department_date_id").show();
+            // $("#submitbtn_id").show();
+            console.log(response)
+          },
+          error: function() {
+            //$("#loadmasking_id").unmask();
+            alert("An error occurred while processing XML file.");
+          }
+        });
+      })
+    });
+  </script>
+
+</div>
